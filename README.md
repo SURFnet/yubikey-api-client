@@ -1,43 +1,20 @@
-# Yubikey API Client Bundle
+# Yubikey API Client
 
-[![Build Status](https://travis-ci.org/SURFnet/yubikey-api-client-bundle.svg)](https://travis-ci.org/SURFnet/yubikey-api-client-bundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client-bundle/badges/quality-score.png?b=feature%2Fvalidate-otp)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client-bundle/?branch=feature%2Fvalidate-otp) [![SensioLabs Insight](https://insight.sensiolabs.com/projects/ff8db7ec-e164-4fcf-a90b-16c02856d1d4/mini.png)](https://insight.sensiolabs.com/projects/ff8db7ec-e164-4fcf-a90b-16c02856d1d4)
+|               | Build Status  | Scrutinizer Code Quality |
+| ------------- | ------------- | ----- |
+| develop       | [![Build Status](https://travis-ci.org/SURFnet/yubikey-api-client.svg?branch=develop)](https://travis-ci.org/SURFnet/yubikey-api-client) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/?branch=develop) |
+| master       | [![Build Status](https://travis-ci.org/SURFnet/yubikey-api-client.svg?branch=master)](https://travis-ci.org/SURFnet/yubikey-api-client) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/?branch=master) |
 
-A Symfony2 bundle to integrate Yubikey's OTP validation service.
+A Yubikey's OTP validation service client.
 
 ## Installation
 
-Add the bundle to your Composer file.
+Add the package to your Composer file.
 
 ```sh
-composer require 'surfnet/yubikey-api-client-bundle:dev-develop'
-```
-
-Add the bundle to your AppKernel.
-
-```php
-public function registerBundles()
-{
-    $bundles[] = new Surfnet\YubikeyApiClientBundle\SurfnetYubikeyApiClientBundle;
-}
+composer require 'surfnet/yubikey-api-client'
 ```
 
 ## Usage
 
-```php
-public function fooAction()
-{
-    /** @var \Surfnet\YubikeyApiClientBundle\Service\VerificationService */
-    $service = $this->get('surfnet_yubikey_api_client.verification_service');
-    
-    if (!\Surfnet\YubikeyApiClient\Otp::isValid('user-input-otp-here')) {
-        // User-entered OTP string is not valid.
-    }
-    
-    $otp = \Surfnet\YubikeyApiClient\Otp::fromString('user-input-otp-here');
-    $result = $service->verify($otp);
-    
-    if ($result->isSuccessful()) {
-        // Yubico verified OTP.
-    }
-}
-```
+See [this OTP verification example](examples/verify-otp.php).

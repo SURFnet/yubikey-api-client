@@ -1,6 +1,6 @@
 {
-    "name": "surfnet/yubikey-api-client-bundle",
-    "description": "A Symfony2 bundle to integrate Yubikey OTP validation service.",
+    "name": "surfnet/yubikey-api-client",
+    "description": "A Yubikey OTP validation service client",
     "keywords": [
         "yubikey",
         "yubico",
@@ -8,22 +8,18 @@
     ],
     "license": "Apache-2.0",
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Surfnet\\YubikeyApiClient\\": "src",
-            "Surfnet\\YubikeyApiClientBundle\\": "src"
+            "Surfnet\\YubikeyApiClient\\Tests\\": "tests"
         }
     },
     "require": {
         "php": ">=5.4,<8.0-dev",
-        "guzzlehttp/guzzle": "~4.0",
-        "symfony/config": "^2.7",
-        "symfony/dependency-injection": "^2.7",
-        "symfony/http-kernel": "^2.7"
+        "guzzlehttp/guzzle": "~4.0"
     },
     "require-dev": {
         "ibuildings/qa-tools": "~1.1",
         "liip/rmt": "1.1.*",
-        "matthiasnoback/symfony-config-test": "0.*",
         "mockery/mockery": "0.9.*"
     }
 }

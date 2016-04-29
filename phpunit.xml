@@ -12,17 +12,12 @@
          bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="Test Suite">
-            <directory>src/Surfnet/YubikeyApiClient/Tests</directory>
-            <directory>src/Surfnet/YubikeyApiClientBundle/Tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory>src</directory>
-            <exclude>
-                <directory>src/Surfnet/YubikeyApiClient/Tests</directory>
-                <directory>src/Surfnet/YubikeyApiClientBundle/Tests</directory>
-            </exclude>
         </whitelist>
     </filter>
 </phpunit>

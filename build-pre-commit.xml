@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Yubikey API Client Bundle-pre-commit" default="build">
+<project name="Yubikey API Client-pre-commit" default="build">
 
     <target name="build"
             depends="prepare-environment,php-lint,phpmd,phpcs,php-license,phpunit"/>
@@ -107,8 +107,6 @@
     <target name="phpmd" depends="get-changeset.php-commasep" if="changeset.php.notempty">
         <exec executable="${test-tree-location}/vendor/bin/phpmd" failonerror="true">
             <arg line="src text ${test-tree-location}/phpmd-pre-commit.xml"/>
-            <arg value="--exclude"/>
-            <arg value="*/Tests/*"/>
         </exec>
         <echo message="OK"/>
     </target>

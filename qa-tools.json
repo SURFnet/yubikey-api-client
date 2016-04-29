@@ -1,6 +1,6 @@
 {
 	"composerBinDir": "vendor\/bin",
-	"projectName": "Yubikey API Client Bundle",
+	"projectName": "Yubikey API Client",
 	"buildArtifacts": {
 		"enabled": false
 	},
@@ -23,7 +23,6 @@
 	"enablePhpLint": true,
 	"enablePhpMessDetector": true,
 	"phpMdExcludePatterns": [
-		"*\/Tests\/*"
 	],
 	"enablePhpCodeSniffer": true,
 	"phpCodeSnifferCodingStyle": "PSR2",
@@ -45,8 +44,7 @@
 	"enablePhpUnit": true,
 	"customPhpUnitXml": false,
 	"phpTestsPath": [
-		"src\/Surfnet\/YubikeyApiClient\/Tests",
-		"src\/Surfnet\/YubikeyApiClientBundle\/Tests"
+		"tests"
 	],
 	"enablePhpUnitAutoload": true,
 	"phpUnitAutoloadPath": "vendor\/autoload.php",

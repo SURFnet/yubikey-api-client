@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Yubikey API Client Bundle-ci" default="build">
+<project name="Yubikey API Client-ci" default="build">
         <target name="build"
             depends="php-lint-ci,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit-ci"/>
 
@@ -50,8 +50,6 @@
             <arg path="src"/>
             <arg value="xml"/>
             <arg value="phpmd.xml"/>
-            <arg value="--exclude"/>
-            <arg value="*/Tests/*"/>
         </exec>
     </target>
 
@@ -69,10 +67,6 @@
 
     <target name="phpcpd-ci" description="Find duplicate code using PHPCPD">
         <exec executable="vendor/bin/phpcpd" failonerror="false">
-            <arg value="--exclude"/>
-            <arg value="src/Surfnet/YubikeyApiClient/Tests"/>
-            <arg value="--exclude"/>
-            <arg value="src/Surfnet/YubikeyApiClientBundle/Tests"/>
             <arg path="src"/>
         </exec>
     </target>
