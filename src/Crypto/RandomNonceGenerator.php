@@ -6,6 +6,6 @@ class RandomNonceGenerator implements NonceGenerator
 {
     public function generateNonce()
     {
-        return md5(uniqid(rand()));
+        return bin2hex(random_bytes(32));
     }
 }
