@@ -88,7 +88,7 @@ class Signer
         $queryString = $this->buildQueryString($signedData);
         $signature = base64_encode(hash_hmac('sha1', $queryString, $this->clientSecret, true));
 
-        return $data['h'] === $signature;
+        return hash_equals($signature, $data['h']);
     }
 
     /**
