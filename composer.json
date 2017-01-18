@@ -15,7 +15,8 @@
     },
     "require": {
         "php": ">=5.4,<8.0-dev",
-        "guzzlehttp/guzzle": "~4.0"
+        "guzzlehttp/guzzle": "~4.0",
+        "paragonie/random_compat": "^1|^2"
     },
     "require-dev": {
         "ibuildings/qa-tools": "~1.1",
