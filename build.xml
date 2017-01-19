@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Yubikey API Client-ci" default="build">
-        <target name="build"
-            depends="php-lint-ci,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit-ci"/>
+<project name="Yubikey API Client" default="build">
+        <target name="build" depends="php-lint,phpmd,phpcs,phpcpd,all-tests,security-checker"/>
+        <target name="pre-commit" depends="php-lint,phpmd,phpcs,phpcpd,unit-tests"/>
+        <target name="pre-push" depends="phpmd,phpcs,phpcpd,all-tests"/>
+        <target name="nightly" depends="integration-tests,security-checker"/>
 
     <target name="get-changeset.php.raw"
             description="creates a list of changed php files separated by newline">
@@ -35,7 +37,7 @@
         </loadresource>
     </target>
 
-    <target name="php-lint-ci" depends="get-changeset.php.spacesep" if="changeset.php.notempty"
+    <target name="php-lint" depends="get-changeset.php.spacesep" if="changeset.php.notempty"
             description="Perform syntax check of sourcecode files in parallel">
         <exec executable="sh" failonerror="true">
             <arg value="-c"/>
@@ -44,7 +46,7 @@
         <echo message="OK"/>
     </target>
 
-    <target name="phpmd-ci"
+    <target name="phpmd"
             description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
         <exec executable="vendor/bin/phpmd" failonerror="true">
             <arg path="src"/>
@@ -53,7 +55,7 @@
         </exec>
     </target>
 
-    <target name="phpcs-ci"
+    <target name="phpcs"
             description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
         <exec executable="vendor/bin/phpcs" failonerror="true">
             <arg value="--report=full"/>
@@ -65,17 +67,36 @@
         </exec>
     </target>
 
-    <target name="phpcpd-ci" description="Find duplicate code using PHPCPD">
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
         <exec executable="vendor/bin/phpcpd" failonerror="false">
             <arg path="src"/>
         </exec>
     </target>
 
-    <target name="phpunit-ci" description="Run unit tests with PHPUnit">
+    <target name="all-tests" description="Run the unit and integration tests" depends="unit-tests,integration-tests">
+        <echo message="OK"/>
+    </target>
+
+    <target name="unit-tests" description="Run unit tests with PHPUnit">
         <exec executable="vendor/bin/phpunit" failonerror="true">
             <arg line="--configuration=${basedir}/"/>
             <arg line="--coverage-text"/>
+            <arg line="--testsuite unit" />
         </exec>
     </target>
 
+    <target name="integration-tests" description="Run unit tests with PHPUnit">
+        <exec executable="vendor/bin/phpunit" failonerror="true">
+            <arg line="--configuration=${basedir}/"/>
+            <arg line="--testsuite integration" />
+        </exec>
+    </target>
+
+    <target name="security-checker">
+        <exec executable="vendor/bin/security-checker" failonerror="true">
+            <arg value="security:check"/>
+            <arg value="--verbose"/>
+            <arg value="composer.lock"/>
+        </exec>
+    </target>
 </project>
