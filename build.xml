@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Yubikey API Client-ci" default="build">
-        <target name="build" depends="php-lint,phpmd,phpcs,phpcpd,alltests,security-checker"/>
-        <target name="pre-commit" depends="php-lint,phpmd,phpcs,phpcpd,unittests"/>
-        <target name="pre-push" depends="phpmd,phpcs,phpcpd,alltests"/>
-        <target name="nightly" depends="integrationtests,security-checker"/>
+<project name="Yubikey API Client" default="build">
+        <target name="build" depends="php-lint,phpmd,phpcs,phpcpd,all-tests,security-checker"/>
+        <target name="pre-commit" depends="php-lint,phpmd,phpcs,phpcpd,unit-tests"/>
+        <target name="pre-push" depends="phpmd,phpcs,phpcpd,all-tests"/>
+        <target name="nightly" depends="integration-tests,security-checker"/>
 
     <target name="get-changeset.php.raw"
             description="creates a list of changed php files separated by newline">
@@ -73,11 +73,11 @@
         </exec>
     </target>
 
-    <target name="alltests" description="Run the unit and integration tests" depends="unittests,integrationtests">
+    <target name="all-tests" description="Run the unit and integration tests" depends="unit-tests,integration-tests">
         <echo message="OK"/>
     </target>
 
-    <target name="unittests" description="Run unit tests with PHPUnit">
+    <target name="unit-tests" description="Run unit tests with PHPUnit">
         <exec executable="vendor/bin/phpunit" failonerror="true">
             <arg line="--configuration=${basedir}/"/>
             <arg line="--coverage-text"/>
@@ -85,7 +85,7 @@
         </exec>
     </target>
 
-    <target name="integrationtests" description="Run unit tests with PHPUnit">
+    <target name="integration-tests" description="Run unit tests with PHPUnit">
         <exec executable="vendor/bin/phpunit" failonerror="true">
             <arg line="--configuration=${basedir}/"/>
             <arg line="--testsuite integration" />
