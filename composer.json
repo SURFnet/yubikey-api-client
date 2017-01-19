@@ -10,7 +10,8 @@
     "autoload": {
         "psr-4": {
             "Surfnet\\YubikeyApiClient\\": "src",
-            "Surfnet\\YubikeyApiClient\\Tests\\": "tests"
+            "Surfnet\\YubikeyApiClient\\Tests\\": "tests/unit",
+            "Surfnet\\YubikeyApiClient\\IntegrationTests\\": "tests/integration"
         }
     },
     "require": {

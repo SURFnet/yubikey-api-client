@@ -2,7 +2,7 @@
 
 <project name="Yubikey API Client-ci" default="build">
         <target name="build"
-            depends="php-lint-ci,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit-ci"/>
+            depends="php-lint-ci,phpmd-ci,phpcs-ci,phpcpd-ci,alltests"/>
 
     <target name="get-changeset.php.raw"
             description="creates a list of changed php files separated by newline">
@@ -71,10 +71,22 @@
         </exec>
     </target>
 
-    <target name="phpunit-ci" description="Run unit tests with PHPUnit">
+    <target name="alltests" description="Run the unit and integration tests" depends="unittests,integrationtests">
+        <echo message="OK"/>
+    </target>
+
+    <target name="unittests" description="Run unit tests with PHPUnit">
         <exec executable="vendor/bin/phpunit" failonerror="true">
             <arg line="--configuration=${basedir}/"/>
             <arg line="--coverage-text"/>
+            <arg line="--testsuite unit" />
+        </exec>
+    </target>
+
+    <target name="integrationtests" description="Run unit tests with PHPUnit">
+        <exec executable="vendor/bin/phpunit" failonerror="true">
+            <arg line="--configuration=${basedir}/"/>
+            <arg line="--testsuite integration" />
         </exec>
     </target>
 
