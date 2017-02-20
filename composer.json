@@ -10,12 +10,14 @@
     "autoload": {
         "psr-4": {
             "Surfnet\\YubikeyApiClient\\": "src",
-            "Surfnet\\YubikeyApiClient\\Tests\\": "tests"
+            "Surfnet\\YubikeyApiClient\\Tests\\": "tests/unit",
+            "Surfnet\\YubikeyApiClient\\IntegrationTests\\": "tests/integration"
         }
     },
     "require": {
-        "php": ">=5.4,<8.0-dev",
-        "guzzlehttp/guzzle": "~4.0"
+        "php": "^5.6|^7",
+        "guzzlehttp/guzzle": "~4.0",
+        "paragonie/random_compat": "^1|^2"
     },
     "require-dev": {
         "ibuildings/qa-tools": "~1.1",
