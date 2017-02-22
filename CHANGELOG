@@ -3,6 +3,7 @@ VERSION 2  ADDED SECURITY FIX. UPDATED PHP 5.6.
 ===============================================
 
    Version 2.0 - Added security fix. Updated PHP 5.6.
+      22/02/2017 16:49  2.0.1  Fixed nonce generation to be compatible with Yubico specification
       20/02/2017 15:25  2.0.0  initial release
 
 VERSION 1  SEPARATED CLIENT LIBRARY FROM SYMFONY BUNDLE
