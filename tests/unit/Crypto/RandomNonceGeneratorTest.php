@@ -6,11 +6,11 @@ use Surfnet\YubikeyApiClient\Crypto\RandomNonceGenerator;
 
 class RandomNonceGeneratorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testItGeneratesMd5Nonce()
+    public function testItGeneratesAHexNonceOfTheCorrectLength()
     {
         $generator = new RandomNonceGenerator;
         $nonce = $generator->generateNonce();
 
-        $this->assertSame(1, preg_match('/^[a-f0-9]{64}$/', $nonce));
+        $this->assertSame(1, preg_match('/^[a-f0-9]{40}$/', $nonce));
     }
 }
