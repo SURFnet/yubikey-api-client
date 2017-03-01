@@ -20,7 +20,6 @@
         "paragonie/random_compat": "^1|^2"
     },
     "require-dev": {
-        "ibuildings/qa-tools": "~1.1",
         "liip/rmt": "1.1.*",
         "mockery/mockery": "0.9.*"
     }
