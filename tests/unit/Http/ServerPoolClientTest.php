@@ -10,7 +10,7 @@ class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testItTriesOnce()
     {
-        $guzzleClient = m::mock('GuzzleHttp\ClientInterface')
+        $guzzleClient = m::mock('GuzzleHttp\Client')
             ->shouldReceive('get')->once()->andReturn(
                 m::mock('GuzzleHttp\Message\ResponseInterface')
             )
@@ -24,12 +24,12 @@ class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
     public function testItTriesTwice()
     {
         $returnValues = [
-            new RequestException('Comms failure', m::mock('GuzzleHttp\Message\RequestInterface'), /*No response*/ null),
+            new RequestException('Comms failure', m::mock('Psr\Http\Message\RequestInterface'), /*No response*/ null),
             m::mock('GuzzleHttp\Message\ResponseInterface'),
         ];
 
         $client = new ServerPoolClient(
-            m::mock('GuzzleHttp\ClientInterface')
+            m::mock('GuzzleHttp\Client')
                 ->shouldReceive('get')->twice()->andReturnUsing(function () use (&$returnValues) {
                     return array_shift($returnValues);
                 })
@@ -44,12 +44,12 @@ class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('GuzzleHttp\Exception\RequestException', 'Comms failure #2');
 
         $exceptions = [
-            new RequestException('Comms failure #1', m::mock('GuzzleHttp\Message\RequestInterface'), null),
-            new RequestException('Comms failure #2', m::mock('GuzzleHttp\Message\RequestInterface'), null),
+            new RequestException('Comms failure #1', m::mock('Psr\Http\Message\RequestInterface'), null),
+            new RequestException('Comms failure #2', m::mock('Psr\Http\Message\RequestInterface'), null),
         ];
 
         $client = new ServerPoolClient(
-            m::mock('GuzzleHttp\ClientInterface')
+            m::mock('GuzzleHttp\Client')
                 ->shouldReceive('get')->twice()->andReturnUsing(function () use (&$exceptions) {
                     throw array_shift($exceptions);
                 })
@@ -64,12 +64,12 @@ class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('GuzzleHttp\Exception\RequestException', 'Internal server error');
 
         $client = new ServerPoolClient(
-            m::mock('GuzzleHttp\ClientInterface')
+            m::mock('GuzzleHttp\Client')
                 ->shouldReceive('get')->twice()->andThrow(
                     new RequestException(
                         'Internal server error',
-                        m::mock('GuzzleHttp\Message\RequestInterface'),
-                        m::mock('GuzzleHttp\Message\ResponseInterface')
+                        m::mock('Psr\Http\Message\RequestInterface'),
+                        m::mock('Psr\Http\Message\ResponseInterface')
                             ->shouldReceive('getStatusCode')->andReturn(500)
                             ->getMock()
                     )

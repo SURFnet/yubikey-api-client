@@ -2,9 +2,9 @@
 
 namespace Surfnet\YubikeyApiClient\Http;
 
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class ServerPoolClient
 {
@@ -17,14 +17,14 @@ class ServerPoolClient
     ];
 
     /**
-     * @var ClientInterface
+     * @var Client
      */
     private $guzzleClient;
 
     /**
-     * @param ClientInterface $guzzleClient
+     * @param Client $guzzleClient
      */
-    public function __construct(ClientInterface $guzzleClient)
+    public function __construct(Client $guzzleClient)
     {
         $this->guzzleClient = $guzzleClient;
     }
