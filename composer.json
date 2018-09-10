@@ -20,7 +20,6 @@
         "paragonie/random_compat": "^1|^2"
     },
     "require-dev": {
-        "liip/rmt": "1.1.*",
         "mockery/mockery": "0.9.*",
         "phpmd/phpmd": "^2.0",
         "phpunit/phpunit": "^4.0",
