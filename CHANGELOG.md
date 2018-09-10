@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.2
+Updated security checker and the way it is being run.
+
 ## 2.1.1
 Remove RMT from the project. From now on use this changelog file
 
