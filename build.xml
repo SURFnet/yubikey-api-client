@@ -93,10 +93,6 @@
     </target>
 
     <target name="security-checker" description="Check for vulnerable dependencies with SensioLabs Security Checker">
-        <exec executable="vendor/bin/security-checker" failonerror="true">
-            <arg value="security:check" />
-            <arg value="--end-point=http://security.sensiolabs.org/check_lock" />
-            <arg value="--verbose" />
-        </exec>
+        <exec dir="${basedir}" executable="bin/securityChecker.sh" failonerror="true"></exec>
     </target>
 </project>
