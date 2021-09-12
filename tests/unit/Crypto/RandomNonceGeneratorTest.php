@@ -4,7 +4,7 @@ namespace Surfnet\YubikeyApiClient\Tests\Crypto;
 
 use Surfnet\YubikeyApiClient\Crypto\RandomNonceGenerator;
 
-class RandomNonceGeneratorTest extends \PHPUnit_Framework_TestCase
+class RandomNonceGeneratorTest extends \PHPUnit\Framework\TestCase
 {
     public function testItGeneratesAHexNonceOfTheCorrectLength()
     {

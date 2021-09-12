@@ -3,7 +3,7 @@
 namespace Surfnet\YubikeyApiClient\IntegrationTest\Http;
 
 use GuzzleHttp\Client;
-use PHPUnit_Framework_TestCase as UnitTest;
+use PHPUnit\Framework\TestCase as UnitTest;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 
 class ServerPoolClientTest extends UnitTest

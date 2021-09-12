@@ -4,7 +4,7 @@ namespace Surfnet\YubikeyApiClient\Tests\Crypto;
 
 use Surfnet\YubikeyApiClient\Crypto\Signer;
 
-class SignerTest extends \PHPUnit_Framework_TestCase
+class SignerTest extends \PHPUnit\Framework\TestCase
 {
     public function testItSignsData()
     {
@@ -36,7 +36,7 @@ class SignerTest extends \PHPUnit_Framework_TestCase
      */
     public function testClientSecretMustBeString($nonString)
     {
-        $this->setExpectedException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException');
+        $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException');
 
         new Signer($nonString);
     }
@@ -62,7 +62,7 @@ class SignerTest extends \PHPUnit_Framework_TestCase
      */
     public function testClientSecretMustBeBase64DecodableString($nonBase64DecodableString)
     {
-        $this->setExpectedException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException');
+        $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException');
 
         new Signer($nonBase64DecodableString);
     }

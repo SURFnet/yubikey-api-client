@@ -6,7 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 use Mockery as m;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 
-class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
+class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
 {
     public function testItTriesOnce()
     {
@@ -45,7 +45,7 @@ class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
 
     public function testItThrowsGuzzlesExceptionAfterTryingTwice()
     {
-        $this->setExpectedException('GuzzleHttp\Exception\RequestException', 'Comms failure #2');
+        $this->expectException('GuzzleHttp\Exception\RequestException', 'Comms failure #2');
 
         $exceptions = [
             new RequestException('Comms failure #1', m::mock('Psr\Http\Message\RequestInterface'), null),
@@ -65,7 +65,7 @@ class ServerPoolClientTest extends \PHPUnit_Framework_TestCase
 
     public function testItThrowsGuzzlesExceptionWhenItHasAResponse()
     {
-        $this->setExpectedException('GuzzleHttp\Exception\RequestException', 'Internal server error');
+        $this->expectException('GuzzleHttp\Exception\RequestException', 'Internal server error');
 
         $client = new ServerPoolClient(
             m::mock('GuzzleHttp\Client')

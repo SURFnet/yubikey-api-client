@@ -4,7 +4,7 @@ namespace Surfnet\YubikeyApiClient\Tests;
 
 use Surfnet\YubikeyApiClient\Otp;
 
-class OtpTest extends \PHPUnit_Framework_TestCase
+class OtpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider otpStrings
@@ -90,7 +90,7 @@ class OtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testItThrowsAnExceptionWhenGivenArgumentIsNotAString($nonString)
     {
-        $this->setExpectedException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a string');
+        $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a string');
 
         \Surfnet\YubikeyApiClient\Otp::fromString($nonString);
     }
@@ -116,7 +116,7 @@ class OtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testItThrowsAnExceptionWhenGivenStringIsNotAnOtpString($nonOtpString)
     {
-        $this->setExpectedException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a valid OTP');
+        $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a valid OTP');
 
         \Surfnet\YubikeyApiClient\Otp::fromString($nonOtpString);
     }

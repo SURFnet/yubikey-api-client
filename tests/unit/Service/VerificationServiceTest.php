@@ -9,7 +9,7 @@ use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 use Surfnet\YubikeyApiClient\Service\VerificationService;
 use Surfnet\YubikeyApiClient\Tests\Crypto\NonceGeneratorStub;
 
-class VerificationServiceTest extends \PHPUnit_Framework_TestCase
+class VerificationServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider nonStrings
@@ -17,7 +17,7 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testClientIdMustBeString($nonString)
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\InvalidArgumentException',
             'Client ID must be string'
         );
@@ -67,7 +67,7 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testVerifiesResponseOtpEqualsRequestOtp()
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\RequestResponseMismatchException',
             'OTP doesn\'t match'
         );
@@ -94,7 +94,7 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testVerifiesResponseNonceEqualsRequestNonce()
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\RequestResponseMismatchException',
             'nonce doesn\'t match'
         );
@@ -121,7 +121,7 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testVerifiesServerSignature()
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\UntrustedSignatureException',
             'signature doesn\'t match'
         );
