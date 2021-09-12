@@ -5,10 +5,13 @@
         By default it is less stringent about long lines than other coding standards
     </description>
 
+    <file>src</file>
+    <file>tests</file>
+
     <exclude-pattern></exclude-pattern>
 
     <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
-    <rule ref="PSR2"/>
+    <rule ref="PSR12"/>
 
     <!-- Lines can be a little bit longer before they break the build -->
     <rule ref="Generic.Files.LineLength">
