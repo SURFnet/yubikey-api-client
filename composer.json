@@ -16,8 +16,7 @@
     },
     "require": {
         "php": "^7.2|^8.0",
-        "guzzlehttp/guzzle": "^7.3",
-        "paragonie/random_compat": "^1|^2"
+        "guzzlehttp/guzzle": "^7.3"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
