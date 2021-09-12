@@ -23,6 +23,6 @@
         "phpmd/phpmd": "^2.0",
         "phpunit/phpunit": "^8.5",
         "sebastian/phpcpd": "^4.0",
-        "squizlabs/php_codesniffer": "^1.0"
+        "squizlabs/php_codesniffer": "^3.6"
     }
 }
