@@ -13,7 +13,7 @@ class ServerPoolClientTest extends UnitTest
      * @dataProvider differentServersInPoolProvider()
      * @param string $serverBaseUrl
      */
-    public function testCanConnectAllServersInPool($serverBaseUrl)
+    public function testCanConnectAllServersInPool(string $serverBaseUrl): void
     {
         $requestClient = new Client();
 
@@ -29,7 +29,7 @@ class ServerPoolClientTest extends UnitTest
     /**
      * @return array
      */
-    public function differentServersInPoolProvider()
+    public function differentServersInPoolProvider(): array
     {
         $client = new ServerPoolClient(new Client());
         $servers = $client->getServerPool();

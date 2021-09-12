@@ -1,18 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Tests;
 
 use Surfnet\YubikeyApiClient\Otp;
+use TypeError;
 
 class OtpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider otpStrings
      * @param string $string
+     * @param string $otpString
+     * @param string $password
+     * @param string $publicId
+     * @param string $cipherText
      */
-    public function testItParsesFromString($string, $otpString, $password, $publicId, $cipherText)
+    public function testItParsesFromString(string $string, string $otpString, string $password, string $publicId, string $cipherText)
     {
-        $otp = \Surfnet\YubikeyApiClient\Otp::fromString($string);
+        $otp = Otp::fromString($string);
 
         $this->assertSame($otpString, $otp->otp);
         $this->assertSame($password, $otp->password);
@@ -24,12 +31,12 @@ class OtpTest extends \PHPUnit\Framework\TestCase
      * @dataProvider otpStrings
      * @param string $string
      */
-    public function testItValidatesCorrectOtps($string)
+    public function testItValidatesCorrectOtps(string $string): void
     {
-        $this->assertTrue(\Surfnet\YubikeyApiClient\Otp::isValid($string));
+        $this->assertTrue(Otp::isValid($string));
     }
 
-    public function otpStrings()
+    public function otpStrings(): array
     {
         return [
             'Regular OTP' => [
@@ -85,36 +92,10 @@ class OtpTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider nonStrings
-     * @param mixed $nonString
-     */
-    public function testItThrowsAnExceptionWhenGivenArgumentIsNotAString($nonString)
-    {
-        $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a string');
-
-        \Surfnet\YubikeyApiClient\Otp::fromString($nonString);
-    }
-
-    /**
-     * @return array
-     */
-    public function nonStrings()
-    {
-        return [
-            'integer' => [1],
-            'float' => [1.1],
-            'array' => [array()],
-            'object' => [new \stdClass],
-            'null' => [null],
-            'boolean' => [false],
-        ];
-    }
-
-    /**
      * @dataProvider nonOtpStrings
      * @param mixed $nonOtpString
      */
-    public function testItThrowsAnExceptionWhenGivenStringIsNotAnOtpString($nonOtpString)
+    public function testItThrowsAnExceptionWhenGivenStringIsNotAnOtpString(string $nonOtpString): void
     {
         $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a valid OTP');
 
@@ -125,12 +106,12 @@ class OtpTest extends \PHPUnit\Framework\TestCase
      * @dataProvider nonOtpStrings
      * @param string $string
      */
-    public function testItDoesntAcceptInvalidOtps($string)
+    public function testItDoesntAcceptInvalidOtps(string $string): void
     {
         $this->assertFalse(Otp::isValid($string));
     }
 
-    public function nonOtpStrings()
+    public function nonOtpStrings(): array
     {
         return [
             'Has invalid characters' => ['abcdefghijklmnopqrstuvwxyz123456789'],

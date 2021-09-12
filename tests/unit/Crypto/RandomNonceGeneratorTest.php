@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Tests\Crypto;
 
 use Surfnet\YubikeyApiClient\Crypto\RandomNonceGenerator;
 
 class RandomNonceGeneratorTest extends \PHPUnit\Framework\TestCase
 {
-    public function testItGeneratesAHexNonceOfTheCorrectLength()
+    public function testItGeneratesAHexNonceOfTheCorrectLength(): void
     {
         $generator = new RandomNonceGenerator;
         $nonce = $generator->generateNonce();

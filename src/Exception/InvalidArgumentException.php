@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException implements SurfnetYubikeyApiClientException
@@ -27,7 +29,7 @@ class InvalidArgumentException extends \InvalidArgumentException implements Surf
      *
      * @return self
      */
-    public static function invalidType($expected, $parameterName, $parameter)
+    public static function invalidType(string $expected, string $parameterName, $parameter): self
     {
         $message = sprintf(
             'Invalid argument type: "%s" expected, "%s" given for "%s"',

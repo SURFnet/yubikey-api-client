@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Tests\Http;
 
 use GuzzleHttp\Exception\RequestException;
@@ -8,7 +10,7 @@ use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 
 class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
 {
-    public function testItTriesOnce()
+    public function testItTriesOnce(): void
     {
         $guzzleClient = m::mock('GuzzleHttp\Client')
             ->shouldReceive('get')->once()->andReturn(
@@ -21,7 +23,7 @@ class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
         $client->get([]);
     }
 
-    public function testItTriesTwice()
+    public function testItTriesTwice(): void
     {
         $returnValues = [
             new RequestException('Comms failure', m::mock('Psr\Http\Message\RequestInterface'), /*No response*/ null),
@@ -43,7 +45,7 @@ class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
         $client->get([]);
     }
 
-    public function testItThrowsGuzzlesExceptionAfterTryingTwice()
+    public function testItThrowsGuzzlesExceptionAfterTryingTwice(): void
     {
         $this->expectException('GuzzleHttp\Exception\RequestException', 'Comms failure #2');
 
@@ -63,7 +65,7 @@ class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
         $client->get([]);
     }
 
-    public function testItThrowsGuzzlesExceptionWhenItHasAResponse()
+    public function testItThrowsGuzzlesExceptionWhenItHasAResponse(): void
     {
         $this->expectException('GuzzleHttp\Exception\RequestException', 'Internal server error');
 
