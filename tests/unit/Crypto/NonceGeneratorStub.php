@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Tests\Crypto;
 
 use Surfnet\YubikeyApiClient\Crypto\NonceGenerator;
@@ -14,12 +16,12 @@ class NonceGeneratorStub implements NonceGenerator
     /**
      * @param string $nonce
      */
-    public function __construct($nonce)
+    public function __construct(string $nonce)
     {
         $this->nonce = $nonce;
     }
 
-    public function generateNonce()
+    public function generateNonce(): string
     {
         return $this->nonce;
     }

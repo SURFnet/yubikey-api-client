@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Service;
 
 use Surfnet\YubikeyApiClient\Crypto\NonceGenerator;
@@ -54,12 +56,12 @@ class VerificationService
      * @param Signer $signer
      * @param string $clientId
      */
-    public function __construct(ServerPoolClient $httpClient, NonceGenerator $nonceGenerator, Signer $signer, $clientId)
-    {
-        if (!is_string($clientId)) {
-            throw new InvalidArgumentException('Client ID must be string.');
-        }
-
+    public function __construct(
+        ServerPoolClient $httpClient,
+        NonceGenerator $nonceGenerator,
+        Signer $signer,
+        string $clientId
+    ) {
         $this->httpClient = $httpClient;
         $this->signer = $signer;
         $this->clientId = $clientId;
@@ -72,7 +74,7 @@ class VerificationService
      * @throws UntrustedSignatureException When the signature doesn't match the expected signature.
      * @throws RequestResponseMismatchException When the response data doesn't match the requested data (otp, nonce).
      */
-    public function verify(Otp $otp)
+    public function verify(Otp $otp): OtpVerificationResult
     {
         $nonce = $this->nonceGenerator->generateNonce();
 
@@ -107,7 +109,7 @@ class VerificationService
      * @param string $response
      * @return array
      */
-    private function parseYubicoResponse($response)
+    private function parseYubicoResponse(string $response): array
     {
         $lines = array_filter(explode("\r\n", $response));
         $responseArray = array();

@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient;
 
 use Surfnet\YubikeyApiClient\Exception\InvalidArgumentException;
@@ -42,13 +44,9 @@ class Otp
      * @return self
      * @throws InvalidArgumentException Thrown when the given string is not an OTP.
      */
-    public static function fromString($string)
+    public static function fromString(string $string): self
     {
         $otp = new self;
-
-        if (!is_string($string)) {
-            throw new InvalidArgumentException('Given OTP is not a string.');
-        }
 
         if (preg_match(self::OTP_REGEXP_QWERTY, $string, $matches)) {
             $otp->otp = strtolower($matches[3]);
@@ -71,7 +69,7 @@ class Otp
      * @param string $string
      * @return bool
      */
-    public static function isValid($string)
+    public static function isValid(string $string): bool
     {
         return preg_match(self::OTP_REGEXP_QWERTY, $string, $matches)
             || preg_match(self::OTP_REGEXP_DVORAK, $string, $matches);

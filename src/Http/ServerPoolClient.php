@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Http;
 
 use GuzzleHttp\Client;
@@ -33,7 +35,7 @@ class ServerPoolClient
      * @param array $requestOptions
      * @return ResponseInterface
      */
-    public function get(array $requestOptions)
+    public function get(array $requestOptions): ResponseInterface
     {
         $poolIndex = array_rand(self::$serverPool);
         try {
@@ -50,7 +52,7 @@ class ServerPoolClient
         return $this->guzzleClient->get(self::$serverPool[$poolIndex], $requestOptions);
     }
 
-    public function getServerPool()
+    public function getServerPool(): array
     {
         return self::$serverPool;
     }

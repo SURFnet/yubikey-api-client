@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Service;
 
 class OtpVerificationResult
@@ -33,7 +35,7 @@ class OtpVerificationResult
     /**
      * @param string $status
      */
-    public function __construct($status)
+    public function __construct(string $status)
     {
         $this->status = $status;
     }
@@ -41,7 +43,7 @@ class OtpVerificationResult
     /**
      * @return boolean
      */
-    public function isSuccessful()
+    public function isSuccessful(): bool
     {
         return $this->status === self::STATUS_OK;
     }
@@ -49,7 +51,7 @@ class OtpVerificationResult
     /**
      * @return string|null NULL if verification was successful, or one of the ERROR_* constants.
      */
-    public function getError()
+    public function getError(): ?string
     {
         return $this->isSuccessful() ? null : $this->status;
     }

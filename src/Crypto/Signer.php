@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Crypto;
 
 use Surfnet\YubikeyApiClient\Exception\InvalidArgumentException;
@@ -45,12 +47,8 @@ class Signer
     /**
      * @param string $clientSecret The base64-encoded client secret
      */
-    public function __construct($clientSecret)
+    public function __construct(string $clientSecret)
     {
-        if (!is_string($clientSecret)) {
-            throw new InvalidArgumentException('Client secret must be string.');
-        }
-
         $this->clientSecret = base64_decode($clientSecret);
 
         if (!is_string($this->clientSecret) || base64_encode($this->clientSecret) !== $clientSecret) {
@@ -64,7 +62,7 @@ class Signer
      * @param array $data
      * @return array
      */
-    public function sign(array $data)
+    public function sign(array $data): array
     {
         ksort($data);
 
@@ -80,7 +78,7 @@ class Signer
      * @param array $data
      * @return bool
      */
-    public function verifySignature(array $data)
+    public function verifySignature(array $data): bool
     {
         $signedData = array_intersect_key($data, array_flip(self::$validResponseParams));
         ksort($signedData);
@@ -95,7 +93,7 @@ class Signer
      * @param array $query
      * @return string
      */
-    private function buildQueryString(array $query)
+    private function buildQueryString(array $query): string
     {
         $queryString = '';
 

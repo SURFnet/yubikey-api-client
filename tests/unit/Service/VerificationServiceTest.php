@@ -1,48 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\Tests\Service;
 
-use GuzzleHttp\Message\ResponseInterface;
 use Mockery as m;
+use Psr\Http\Message\ResponseInterface;
 use Surfnet\YubikeyApiClient\Crypto\Signer;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 use Surfnet\YubikeyApiClient\Service\VerificationService;
 use Surfnet\YubikeyApiClient\Tests\Crypto\NonceGeneratorStub;
 
-class VerificationServiceTest extends \PHPUnit_Framework_TestCase
+class VerificationServiceTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @dataProvider nonStrings
-     * @param mixed $nonString
-     */
-    public function testClientIdMustBeString($nonString)
-    {
-        $this->setExpectedException(
-            'Surfnet\YubikeyApiClient\Exception\InvalidArgumentException',
-            'Client ID must be string'
-        );
-
-        new VerificationService(
-            m::mock('Surfnet\YubikeyApiClient\Http\ServerPoolClient'),
-            m::mock('Surfnet\YubikeyApiClient\Crypto\NonceGenerator'),
-            m::mock('Surfnet\YubikeyApiClient\Crypto\Signer'),
-            $nonString
-        );
-    }
-
-    public function nonStrings()
-    {
-        return [
-            'integer' => [1],
-            'float' => [1.1],
-            'array' => [array()],
-            'object' => [new \stdClass],
-            'null' => [null],
-            'boolean' => [false],
-        ];
-    }
-
-    public function testVerifiesOtp()
+    public function testVerifiesOtp(): void
     {
         $otpString = 'ddddddbtbhnhcjnkcfeiegrrnnednjcluulduerelthv';
         $nonce = 'surfnet';
@@ -65,9 +36,9 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($service->verify($otp)->isSuccessful());
     }
 
-    public function testVerifiesResponseOtpEqualsRequestOtp()
+    public function testVerifiesResponseOtpEqualsRequestOtp(): void
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\RequestResponseMismatchException',
             'OTP doesn\'t match'
         );
@@ -92,9 +63,9 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
         $service->verify($otp);
     }
 
-    public function testVerifiesResponseNonceEqualsRequestNonce()
+    public function testVerifiesResponseNonceEqualsRequestNonce(): void
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\RequestResponseMismatchException',
             'nonce doesn\'t match'
         );
@@ -119,9 +90,9 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
         $service->verify($otp);
     }
 
-    public function testVerifiesServerSignature()
+    public function testVerifiesServerSignature(): void
     {
-        $this->setExpectedException(
+        $this->expectException(
             'Surfnet\YubikeyApiClient\Exception\UntrustedSignatureException',
             'signature doesn\'t match'
         );
@@ -151,9 +122,9 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
      * @param string $nonce
      * @return ResponseInterface
      */
-    private function createVerificationResponse($otpString, $nonce)
+    private function createVerificationResponse(string $otpString, string $nonce): ResponseInterface
     {
-        $expectedResponse = m::mock('GuzzleHttp\Message\ResponseInterface')
+        $expectedResponse = m::mock('Psr\Http\Message\ResponseInterface')
             ->shouldReceive('getBody')->once()->andReturn("status=OK\r\notp=$otpString\r\nnonce=$nonce")
             ->getMock();
 
@@ -164,7 +135,7 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
      * @param ResponseInterface $expectedResponse
      * @return ServerPoolClient
      */
-    private function createHttpClient(ResponseInterface $expectedResponse)
+    private function createHttpClient(ResponseInterface $expectedResponse): ServerPoolClient
     {
         $httpClient = m::mock('Surfnet\YubikeyApiClient\Http\ServerPoolClient')
             ->shouldReceive('get')->once()->andReturn($expectedResponse)
@@ -178,7 +149,7 @@ class VerificationServiceTest extends \PHPUnit_Framework_TestCase
      * @param boolean $verifiesSignature
      * @return Signer
      */
-    private function createDummySigner(array $request, $verifiesSignature)
+    private function createDummySigner(array $request, bool $verifiesSignature): Signer
     {
         $signer = m::mock('Surfnet\YubikeyApiClient\Crypto\Signer')
             ->shouldReceive('sign')->once()->with($request)->andReturn($request)

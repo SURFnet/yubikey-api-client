@@ -3,7 +3,7 @@
 namespace Surfnet\YubikeyApiClient\IntegrationTest\Http;
 
 use GuzzleHttp\Client;
-use PHPUnit_Framework_TestCase as UnitTest;
+use PHPUnit\Framework\TestCase as UnitTest;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 
 class ServerPoolClientTest extends UnitTest
@@ -13,7 +13,7 @@ class ServerPoolClientTest extends UnitTest
      * @dataProvider differentServersInPoolProvider()
      * @param string $serverBaseUrl
      */
-    public function testCanConnectAllServersInPool($serverBaseUrl)
+    public function testCanConnectAllServersInPool(string $serverBaseUrl): void
     {
         $requestClient = new Client();
 
@@ -29,7 +29,7 @@ class ServerPoolClientTest extends UnitTest
     /**
      * @return array
      */
-    public function differentServersInPoolProvider()
+    public function differentServersInPoolProvider(): array
     {
         $client = new ServerPoolClient(new Client());
         $servers = $client->getServerPool();
