@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="Yubikey API Client" default="build">
-        <target name="build" depends="php-lint,phpmd,phpcs,phpcpd,all-tests,security-checker"/>
+        <target name="build" depends="php-lint,phpmd,phpcs,phpcpd,all-tests"/>
         <target name="pre-commit" depends="php-lint,phpmd,phpcs,phpcpd,unit-tests"/>
         <target name="pre-push" depends="phpmd,phpcs,phpcpd,all-tests"/>
-        <target name="nightly" depends="integration-tests,security-checker"/>
+        <target name="nightly" depends="integration-tests"/>
 
     <target name="get-changeset.php.raw"
             description="creates a list of changed php files separated by newline">
@@ -90,9 +90,5 @@
             <arg line="--configuration=${basedir}/"/>
             <arg line="--testsuite integration" />
         </exec>
-    </target>
-
-    <target name="security-checker" description="Check for vulnerable dependencies with SensioLabs Security Checker">
-        <exec dir="${basedir}" executable="bin/securityChecker.sh" failonerror="true"></exec>
     </target>
 </project>
