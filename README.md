@@ -2,8 +2,8 @@
 
 |               | Build Status  | Scrutinizer Code Quality |
 | ------------- | ------------- | ----- |
-| develop       | [![Build Status](https://app.travis-ci.com/SURFnet/yubikey-api-client.svg?branch=develop)](https://travis-ci.com/SURFnet/yubikey-api-client) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/?branch=develop) |
-| master       | [![Build Status](https://app.travis-ci.com/SURFnet/yubikey-api-client.svg?branch=dmaster)](https://travis-ci.com/SURFnet/yubikey-api-client) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/?branch=master) |
+| develop       | [![Build Status](https://app.travis-ci.com/SURFnet/yubikey-api-client.svg?branch=develop)](https://app.travis-ci.com/github/SURFnet/yubikey-api-client) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/?branch=develop) |
+| master       | [![Build Status](https://app.travis-ci.com/SURFnet/yubikey-api-client.svg?branch=dmaster)](https://app.travis-ci.com/github/SURFnet/yubikey-api-client) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SURFnet/yubikey-api-client/?branch=master) |
 
 A Yubikey's OTP validation service client.
 
