@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+Raises minimum PHP version to PHP 7.2, adds support for PHP 8
+Updates all dependencies
+Add type hints, return types and strict typing
+
 ## 2.1.2
 Updated security checker and the way it is being run.
 
