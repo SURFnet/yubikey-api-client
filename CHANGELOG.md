@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Change Yubico API location (https://github.com/SURFnet/yubikey-api-client/issues/9)
+
 ## 2.2.0
 - Raises minimum PHP version to PHP 7.2, adds support for PHP 8
 - Updates all dependencies
