@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class ServerPoolClient
 {
-    const YUBICO_API_VERIFY = 'https://api.yubico.com/wsapi/2.0/verify';
+    private const YUBICO_API_VERIFY = 'https://api.yubico.com/wsapi/2.0/verify';
 
     /**
      * @var Client
