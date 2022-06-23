@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.3.0
 - Change Yubico API location (https://github.com/SURFnet/yubikey-api-client/issues/9)
 
 ## 2.2.0
