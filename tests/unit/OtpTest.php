@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Surfnet\YubikeyApiClient\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Surfnet\YubikeyApiClient\Otp;
 use TypeError;
 
-class OtpTest extends \PHPUnit\Framework\TestCase
+class OtpTest extends TestCase
 {
     /**
      * @dataProvider otpStrings
@@ -17,7 +18,7 @@ class OtpTest extends \PHPUnit\Framework\TestCase
      * @param string $publicId
      * @param string $cipherText
      */
-    public function testItParsesFromString(string $string, string $otpString, string $password, string $publicId, string $cipherText)
+    public function testItParsesFromString(string $string, string $otpString, string $password, string $publicId, string $cipherText): void
     {
         $otp = Otp::fromString($string);
 
@@ -36,7 +37,7 @@ class OtpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Otp::isValid($string));
     }
 
-    public function otpStrings(): array
+    public static function otpStrings(): array
     {
         return [
             'Regular OTP' => [
@@ -99,7 +100,7 @@ class OtpTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException('Surfnet\YubikeyApiClient\Exception\InvalidArgumentException', 'not a valid OTP');
 
-        \Surfnet\YubikeyApiClient\Otp::fromString($nonOtpString);
+        Otp::fromString($nonOtpString);
     }
 
     /**
@@ -111,7 +112,7 @@ class OtpTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(Otp::isValid($string));
     }
 
-    public function nonOtpStrings(): array
+    public static function nonOtpStrings(): array
     {
         return [
             'Has invalid characters' => ['abcdefghijklmnopqrstuvwxyz123456789'],

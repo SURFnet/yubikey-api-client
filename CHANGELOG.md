@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.0
+- Raise minimum PHP version to 8.0
+- Add even more typehints
+- Update all dependencies
+- Fix test that was marked risky
+
 ## 2.3.0
 - Change Yubico API location (https://github.com/SURFnet/yubikey-api-client/issues/9)
 

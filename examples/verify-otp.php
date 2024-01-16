@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use GuzzleHttp\Client as GuzzleClient;
 use Surfnet\YubikeyApiClient\Crypto\RandomNonceGenerator;
 use Surfnet\YubikeyApiClient\Crypto\Signer;

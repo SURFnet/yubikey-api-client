@@ -27,7 +27,7 @@ class Signer
     /**
      * @var array Valid parameters in the response message
      */
-    private static $validResponseParams = [
+    private static array $validResponseParams = [
         'nonce',
         'otp',
         'sessioncounter',
@@ -42,7 +42,7 @@ class Signer
     /**
      * @var string The base64-decoded client secret
      */
-    private $clientSecret;
+    private string $clientSecret;
 
     /**
      * @param string $clientSecret The base64-encoded client secret
@@ -51,7 +51,7 @@ class Signer
     {
         $this->clientSecret = base64_decode($clientSecret);
 
-        if (!is_string($this->clientSecret) || base64_encode($this->clientSecret) !== $clientSecret) {
+        if (base64_encode($this->clientSecret) !== $clientSecret) {
             throw new InvalidArgumentException('Given client secret is not a base64-decodable string.');
         }
     }

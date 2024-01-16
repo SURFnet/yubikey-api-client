@@ -33,22 +33,22 @@ class VerificationService
     /**
      * @var ServerPoolClient
      */
-    private $httpClient;
+    private ServerPoolClient $httpClient;
 
     /**
      * @var Signer
      */
-    private $signer;
+    private Signer $signer;
 
     /**
      * @var string Yubico client ID
      */
-    private $clientId;
+    private string $clientId;
 
     /**
      * @var NonceGenerator
      */
-    private $nonceGenerator;
+    private NonceGenerator $nonceGenerator;
 
     /**
      * @param ServerPoolClient $httpClient
@@ -112,7 +112,7 @@ class VerificationService
     private function parseYubicoResponse(string $response): array
     {
         $lines = array_filter(explode("\r\n", $response));
-        $responseArray = array();
+        $responseArray = [];
 
         foreach ($lines as $line) {
             list($key, $value) = explode('=', $line, 2);
