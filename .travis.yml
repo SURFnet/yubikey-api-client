@@ -4,29 +4,22 @@
 # Any custom Travis-ci configuration be added here
 # This file should be added to your project repository
 #
-dist: bionic
+dist: focal
 
 sudo: false
 
 language: php
 
 php:
-  - 7.2
-  - 7.4
   - 8.0
-  - hhvm
-
-matrix:
-    allow_failures:
-        - php: 8.0
-        - php: hhvm
+  - 8.1
+  - 8.2
 
 cache:
   directories:
     - ~/.composer/cache/files
 
 before_script:
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpenv config-add .travis.php.ini; fi
   - phpenv config-add .travis.php.ini
   - composer self-update --1
   - composer install --prefer-dist

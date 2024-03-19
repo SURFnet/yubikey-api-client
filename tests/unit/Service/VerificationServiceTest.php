@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Surfnet\YubikeyApiClient\Tests\Service;
 
 use Mockery as m;
+use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Surfnet\YubikeyApiClient\Crypto\Signer;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 use Surfnet\YubikeyApiClient\Service\VerificationService;
 use Surfnet\YubikeyApiClient\Tests\Crypto\NonceGeneratorStub;
 
-class VerificationServiceTest extends \PHPUnit\Framework\TestCase
+class VerificationServiceTest extends TestCase
 {
     public function testVerifiesOtp(): void
     {
@@ -32,7 +34,6 @@ class VerificationServiceTest extends \PHPUnit\Framework\TestCase
         $otp->otp = $otpString;
 
         $service = new VerificationService($httpClient, $nonceGenerator, $signer, '1234');
-
         $this->assertTrue($service->verify($otp)->isSuccessful());
     }
 
@@ -124,11 +125,7 @@ class VerificationServiceTest extends \PHPUnit\Framework\TestCase
      */
     private function createVerificationResponse(string $otpString, string $nonce): ResponseInterface
     {
-        $expectedResponse = m::mock('Psr\Http\Message\ResponseInterface')
-            ->shouldReceive('getBody')->once()->andReturn("status=OK\r\notp=$otpString\r\nnonce=$nonce")
-            ->getMock();
-
-        return $expectedResponse;
+        return new Response(200, [], sprintf("status=OK\r\notp=%s\r\nnonce=%s", $otpString, $nonce));
     }
 
     /**

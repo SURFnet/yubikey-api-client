@@ -11,7 +11,7 @@ class NonceGeneratorStub implements NonceGenerator
     /**
      * @var string
      */
-    private $nonce;
+    private string $nonce;
 
     /**
      * @param string $nonce

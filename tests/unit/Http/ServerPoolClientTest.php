@@ -6,9 +6,11 @@ namespace Surfnet\YubikeyApiClient\Tests\Http;
 
 use GuzzleHttp\Exception\RequestException;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 
-class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
+class ServerPoolClientTest extends TestCase
 {
     public function testItTriesOnce(): void
     {
@@ -20,7 +22,8 @@ class ServerPoolClientTest extends \PHPUnit\Framework\TestCase
 
         $client = new ServerPoolClient($guzzleClient);
 
-        $client->get([]);
+        $response = $client->get([]);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
     public function testItThrowsGuzzlesExceptionWhenItHasAResponse(): void

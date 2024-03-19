@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Surfnet\YubikeyApiClient\Tests\Crypto;
 
+use PHPUnit\Framework\TestCase;
 use Surfnet\YubikeyApiClient\Crypto\Signer;
 
-class SignerTest extends \PHPUnit\Framework\TestCase
+class SignerTest extends TestCase
 {
     public function testItSignsData(): void
     {
@@ -43,7 +44,7 @@ class SignerTest extends \PHPUnit\Framework\TestCase
         new Signer($nonBase64DecodableString);
     }
 
-    public function nonBase64DecodableStrings(): array
+    public static function nonBase64DecodableStrings(): array
     {
         return [
             ['W*()$&#*($&)'],

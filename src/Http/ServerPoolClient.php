@@ -15,7 +15,7 @@ class ServerPoolClient
     /**
      * @var Client
      */
-    private $guzzleClient;
+    private Client $guzzleClient;
 
     /**
      * @param Client $guzzleClient

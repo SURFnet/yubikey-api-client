@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Surfnet\YubikeyApiClient\IntegrationTest\Http;
 
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase as UnitTest;
+use PHPUnit\Framework\TestCase;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 
-class ServerPoolClientTest extends UnitTest
+class ServerPoolClientTest extends TestCase
 {
     /**
      * @group nightly
@@ -23,7 +25,7 @@ class ServerPoolClientTest extends UnitTest
 
         $response = $requestClient->get($url);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertContains('BAD_OTP', $response->getBody()->getContents());
+        $this->assertStringContainsString('BAD_OTP', $response->getBody()->getContents());
     }
 
     /**
