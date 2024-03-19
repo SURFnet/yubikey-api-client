@@ -23,7 +23,7 @@ before_script:
   - phpenv config-add .travis.php.ini
   - composer self-update --1
   - composer install --prefer-dist
-  - composer test
+  - composer check
 
 script:
   - ant

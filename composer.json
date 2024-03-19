@@ -31,7 +31,7 @@
     }
   },
   "scripts": {
-    "test": [
+    "check": [
       "@phpunit",
       "@security-tests"
     ],
