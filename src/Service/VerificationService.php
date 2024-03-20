@@ -28,7 +28,7 @@ use Surfnet\YubikeyApiClient\Exception\UntrustedSignatureException;
 use Surfnet\YubikeyApiClient\Http\ServerPoolClient;
 use Surfnet\YubikeyApiClient\Otp;
 
-class VerificationService
+class VerificationService implements VerificationServiceInterface
 {
     /**
      * @var ServerPoolClient
